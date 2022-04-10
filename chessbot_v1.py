@@ -32,6 +32,7 @@ def get_moves_to_pgn(driver,move_number,color):
         text_file.write("%s" % new_moves)
 
 def get_best_move():
+    dir=os.getcwd()
     chessEngine = Engine('./stockfish_13_linux_x64', param={'Threads': 1, 'Ponder': None})
     file = 'moves.txt'
     with open(file) as f:
@@ -77,8 +78,8 @@ def draw_board_coordinates(size):
                 else:
                     if i==0:
                         board[i][j][k]=cell_size
-                    #if i==8:
-                    #   board[i][j][k]=cell_size-20
+                    elif i==8:
+                       board[i][j][k]=cell_size-10
                     else:
                         board[i][j][k]=cell_size*(i+1)
     return board
@@ -96,9 +97,7 @@ def letter_to_int(letter,color):
     if color=="white":
         array_letter=["a","b","c","d","e","f","g","h"]
         return array_letter.index(letter)
-    elif color=='black':
-        array_letter=['h','g','f','e','d','c','b','a']
-        return abs(array_letter.index(letter)-8)
+
 
 def get_color(driver,username):
     names=[]
@@ -141,8 +140,6 @@ def play_as_guest():
     guest_color=get_color(driver,guest_name)
     size=find_board_size(driver)
     board=draw_board_coordinates(size)
-    print(guest_name)
-    print(guest_color)
     move=0
     time.sleep(5)
     while(True):
