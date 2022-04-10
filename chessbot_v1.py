@@ -94,7 +94,6 @@ def automove(driver,x,y,new_x,new_y):
     action_chains.move_to_element_with_offset(board, new_x, new_y).click().perform() 
 
 def letter_to_int(letter,color):
-    if color=="white":
         array_letter=["a","b","c","d","e","f","g","h"]
         return array_letter.index(letter)
 
